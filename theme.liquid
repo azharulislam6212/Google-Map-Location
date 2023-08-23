@@ -1,0 +1,40 @@
+  <script src="https://maps.googleapis.com/maps/api/js?key={{map_api_key}}&amp;v=3.exp&amp;sensor=false&amp;language=en"></script>
+    
+<script>
+
+$(function () {
+      var createMap = function( coords, zoom ) {
+        var coordsParts = coords.split( "," );
+        if( typeof google !== "undefined" ) {
+          var options = {
+            zoom: zoom,
+            center: new google.maps.LatLng( coordsParts[0], coordsParts[1] ),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+            
+          var map = new google.maps.Map( document.getElementById( "map" ), options );
+            
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng( coordsParts[0], coordsParts[1] ),
+            map: map,
+            icon:'https://cdn.shopify.com/s/files/1/0812/4917/3780/files/pin.svg?v=1692730544'
+          });
+      
+        }
+      
+      };
+
+
+      var map = $('#map');
+
+    var coords = map.data( "coords" );
+    var zoom = map.data( "zoom" ) ;
+
+      createMap( coords, zoom);
+
+});
+
+
+</script>
+
+
